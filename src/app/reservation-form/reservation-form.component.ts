@@ -34,6 +34,7 @@ export class ReservationFormComponent implements OnInit {
     })
   }
 
+  //Fifth - adding method
   onSubmit() {
     if (this.reservationForm.valid) {
       console.log('Valid');
@@ -45,5 +46,6 @@ export class ReservationFormComponent implements OnInit {
       console.log('Invalid')
     }
   }
+ //
 
 }

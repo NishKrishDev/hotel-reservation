@@ -1,11 +1,11 @@
-<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()"> <!--Third-->
+<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()"> <!--Third adding form group, Fourth adding event to submit form-->
 
     <h2 *ngIf="reservationForm.invalid">Enter valid form details</h2>
     <h2 *ngIf="reservationForm.valid">Details are valid</h2>
 
     <div>
         <label>Check-In</label>
-        <input type="date" formControlName="checkInDate" />
+        <input type="date" formControlName="checkInDate" /> <!--Sixth - Adding fromControlName-->
         <div *ngIf="reservationForm.get('checkInDate')?.invalid && reservationForm.get('checkInDate')?.touched">Check in
             date is required</div>
     </div>
