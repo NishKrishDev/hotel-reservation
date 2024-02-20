@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 // first
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 //
 import { ReservationService } from '../reservation/reservation.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,9 +15,10 @@ export class ReservationFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private reservationService : ReservationService, 
-    private router : Router
-    ) {
+    private reservationService: ReservationService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
 
   }
 
@@ -29,9 +30,17 @@ export class ReservationFormComponent implements OnInit {
       checkInDate: ['', Validators.required],
       checkOutDate: ['', Validators.required],
       guestName: ['', Validators.required],
-      guestEmail: ['', [ Validators.required, Validators.email]],
+      guestEmail: ['', [Validators.required, Validators.email]],
       roomNumber: ['', Validators.required],
     })
+
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+
+    if (id) {
+      let reservation = this.reservationService.getReservation(id);
+      if (reservation)
+        this.reservationForm.patchValue(reservation)
+    }
   }
 
   //Fifth - adding method
@@ -39,13 +48,23 @@ export class ReservationFormComponent implements OnInit {
     if (this.reservationForm.valid) {
       console.log('Valid');
       let reservation = this.reservationForm.value;
-      this.reservationService.addReservation(reservation);
+
+      let id = this.activatedRoute.snapshot.paramMap.get('id');
+      if (id) {
+        //update
+        this.reservationService.updateReservation(id, reservation)
+      }
+      else 
+      {
+        //add
+        this.reservationService.addReservation(reservation);
+      }
       this.router.navigate(['/list'])
     }
     else {
       console.log('Invalid')
     }
   }
- //
+  //
 
 }
