@@ -1,3 +1,8 @@
+<!-- Use Selector of Home Component -->
+<app-home></app-home> 
+
+<h2>Add/Edit Details</h2>
+
 <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()"> <!--Third adding form group, Fourth adding event to submit form-->
 
     <h2 *ngIf="reservationForm.invalid">Enter valid form details</h2>

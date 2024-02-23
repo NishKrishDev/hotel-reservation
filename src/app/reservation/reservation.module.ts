@@ -4,6 +4,7 @@ import { ReservationFormComponent } from '../reservation-form/reservation-form.c
 import { ReservationListComponent } from '../reservation-list/reservation-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { HomeModule } from '../home/home.module';
 
 
 
@@ -16,7 +17,9 @@ import { RouterLink } from '@angular/router';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    // import home module which contains home component
+    HomeModule 
   ]
 })
 export class ReservationModule { }
